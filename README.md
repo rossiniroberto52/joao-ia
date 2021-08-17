@@ -8,4 +8,4 @@
     tecnologia
     reconhecimento de voz
     sintese de voz
-    algum IA.
+    algum IA: comandos modulares, NLU
