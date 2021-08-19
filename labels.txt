@@ -1,0 +1,6 @@
+open|vscode
+open|notepad
+open|google
+time|getTime
+time|getDate
+weather|getWeather

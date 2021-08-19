@@ -9,3 +9,8 @@
     reconhecimento de voz
     sintese de voz
     algum IA.
+
+funçoes do assitente:
+   Abrir Programas
+   dizer as horas
+   dizer a data
