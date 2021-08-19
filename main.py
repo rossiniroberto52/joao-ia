@@ -10,14 +10,11 @@ from nlu.classifier import classify
 import subprocess
 
 
-comand = 'cmd'
-
-
 # Síntese de fala
 engine = pyttsx3.init()
 
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[-2].id)
+engine.setProperty('voice', voices[-3].id)
 
 def speak(text):
     engine.say(text)
@@ -42,6 +39,7 @@ def evaluate(text):
     elif entity == 'open|vscode':
         speak('abrindo o visual estudio code')
         #os.system(comand)
+        subprocess.Popen('cmd')
 
     print('Text: {}  Entity: {}'.format(text, entity))
 
