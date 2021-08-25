@@ -8,4 +8,3 @@
     tecnologia
     reconhecimento de voz
     sintese de voz
-    algum IA.
