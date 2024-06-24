@@ -1,29 +1,31 @@
-#main file.
 from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
 import pyttsx3
 import json
 import core
-
-#sintetisador de voz
+from nlu.classifier import classify
+# Síntese de fala
 engine = pyttsx3.init()
 
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[-3].id)
 
-def speek(text):
+def speak(text):
     engine.say(text)
     engine.runAndWait()
 
 
-model = Model("model")
+# Reconhecimento de fala
+
+model = Model('model')
 rec = KaldiRecognizer(model, 16000)
 
-p= pyaudio.PyAudio()
+p = pyaudio.PyAudio()
 stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=2048)
 stream.start_stream()
 
+# Loop do reconhecimento de fala
 while True:
     data = stream.read(2048)
     if len(data) == 0:
@@ -35,7 +37,12 @@ while True:
         if result is not None:
             text = result['text']
 
-            print(text)
+            # Reconhecer entidade do texto.
+            entity = classify(text)
 
-        if text == 'que horas são' or text == 'me fale as horas':
-            speek(core.SystemInfo.get_time())
+            if entity == 'time\getTime':
+                speak(core.SystemInfo.get_time())
+            elif entity == 'time\getDate':
+                speak(core.SystemInfo.get_date())
+
+            print('Text: {}  Entity: {}'.format(text, entity))
